@@ -15,6 +15,10 @@ LINE = (
     "One letter, total outage."
 )
 
+# The gate allows 1-200 characters of non-whitespace UTF-8 text; fail
+# loudly here rather than shipping an entry the scorer would refuse.
+assert 1 <= len(LINE.strip()) <= 200, f"line is {len(LINE)} chars"
+
 
 def main() -> None:
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
